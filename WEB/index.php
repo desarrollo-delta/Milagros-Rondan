@@ -55,7 +55,7 @@
   <!-- END SCROLL TOP BUTTON -->
 
   <!-- Start header section -->
-  <header id="mu-header">  
+  <header id="mu-header">
     <nav class="navbar navbar-default mu-main-navbar" role="navigation">  
       <div class="container">
         <div class="navbar-header">
@@ -147,7 +147,7 @@
     </div>
   </section>
   <!-- End slider  -->
-
+  
   <!-- Start About us -->
   <section id="mu-about-us">
     <div class="container">
