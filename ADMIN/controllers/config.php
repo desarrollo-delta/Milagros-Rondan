@@ -5,7 +5,14 @@ class config {
     }
 
     public function pages(){
-        include 'views/principal/index.php';
+        if(isset($_GET['action'])){
+            $action = $_GET['action'];
+            if($action == 'portada' || $action == 'nosotros' || $action == 'eventos'){
+                include 'views/mantenimiento/'.$action.'.php';
+            }
+        }else{
+            include 'views/principal/index.php';
+        }
     }
 }
 ?>
