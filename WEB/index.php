@@ -79,7 +79,7 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul id="top-menu" class="nav navbar-nav navbar-right mu-main-nav">
-            <li><a href="index.php">HOGAR</a></li>
+            <li><a href="index.php">INICIO</a></li>
             <li><a href="#mu-about-us">SOBRE NOSOTROS</a></li>                       
             <li><a href="#mu-restaurant-menu">TIPOS DE EVENTOS</a></li>                                             
             <li><a href="#mu-gallery">GALERIA</a></li>
