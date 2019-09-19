@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -6,60 +5,29 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">    
     <title>MilagrosRondan | Page</title>
-
-    <!-- Favicon -->
     <link rel="shortcut icon" href="assets/img/favicon.ico" type="image/x-icon">
-
-    <!-- Font awesome -->
     <link href="assets/css/font-awesome.css" rel="stylesheet">
-    <!-- Bootstrap -->
     <link href="assets/css/bootstrap.css" rel="stylesheet">   
-    <!-- Slick slider -->
     <link rel="stylesheet" type="text/css" href="assets/css/slick.css">    
-    <!-- Date Picker -->
     <link rel="stylesheet" type="text/css" href="assets/css/bootstrap-datepicker.css">   
-     <!-- Gallery Lightbox -->
     <link href="assets/css/magnific-popup.css" rel="stylesheet"> 
-    <!-- Theme color -->
     <link id="switcher" href="assets/css/theme-color/default-theme.css" rel="stylesheet">     
-
-    <!-- Main style sheet -->
     <link href="style.css" rel="stylesheet">    
-
-   
-    <!-- Google Fonts -->
-
-    <!-- Prata for body  -->
     <link href='https://fonts.googleapis.com/css?family=Prata' rel='stylesheet' type='text/css'>
-    <!-- Tangerine for small title -->
     <link href='https://fonts.googleapis.com/css?family=Tangerine' rel='stylesheet' type='text/css'>   
-    <!-- Open Sans for title -->
     <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
-    
-    
-
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
 
   </head>
   <body>
 
-  <!--START SCROLL TOP BUTTON -->
     <a class="scrollToTop" href="#">
       <i class="fa fa-angle-up"></i>
     </a>
-  <!-- END SCROLL TOP BUTTON -->
 
-  <!-- Start header section -->
   <header id="mu-header">
     <nav class="navbar navbar-default mu-main-navbar" role="navigation">  
       <div class="container">
         <div class="navbar-header">
-          <!-- FOR MOBILE VIEW COLLAPSED BUTTON -->
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
             <span class="sr-only">Toggle navigation</span>
             <span class="icon-bar"></span>
@@ -67,82 +35,42 @@
             <span class="icon-bar"></span>
           </button>
 
-          <!-- LOGO -->       
-
-           <!--  Text based logo  -->
           <a class="navbar-brand" href="index.php">Milagros<span>Rondan</span></a> 
-
-		      <!--  Image based logo  -->
-          <!-- <a class="navbar-brand" href="index.html"><img src="assets/img/logo.png" alt="Logo img"></a>  -->
-         
 
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul id="top-menu" class="nav navbar-nav navbar-right mu-main-nav">
             <li><a href="index.php">INICIO</a></li>
             <li><a href="#mu-about-us">SOBRE NOSOTROS</a></li>                       
-            <li><a href="#mu-restaurant-menu">TIPOS DE EVENTOS</a></li>                                             
+            <li><a href="#mu-restaurant-menu">TIPOS DE EVENTOS</a></li>           
             <li><a href="#mu-gallery">GALERIA</a></li>
             <li><a href="#mu-chef">NUESTROS EVENTOS</a></li> 
             <li><a href="#mu-contact">CONTACTO</a></li> 
-          </ul>                            
-        </div><!--/.nav-collapse -->       
-      </div>          
-    </nav> 
+          </ul>
+        </div>
+      </div>
+    </nav>
   </header>
-  <!-- End header section -->
- 
-
-  <!-- Start slider  -->
+  <?php
+  require_once('connection/database.php');
+  $sql = "SELECT id_portada, foto1, texto1, texto2, texto3 FROM milagosrondan.portada WHERE estado = '1'";
+  $conexion = database::getConexion();
+  $query = mysqli_query($conexion, $sql);
+  ?>
   <section id="mu-slider">
     <div class="mu-slider-area"> 
-
-      <!-- Top slider -->
       <div class="mu-top-slider">
-
-        <!-- Top slider single slide -->
+        <?php while ( $row = $query->fetch_assoc() ) { ?>
         <div class="mu-top-slider-single">
-          <img src="public/img/portada.png" alt="img">
-          <!-- Top slider content -->
+          <img src="../ADMIN/img/portada/<?php echo $row['foto1'] ?>" alt="img">
           <div class="mu-top-slider-content">
-            <span class="mu-slider-small-title" style="color:#FEFEFE">Bienvenidos</span>
-            <h2 class="mu-slider-title">A Eventos Milagros Rondan</h2>
-            <p>Eventos Milagros Rondan te ofrece un servicio de catering de calidad y 100% garantizado 
-                6 características que definen a una buena organizadora de eventos.</p>           
+            <span class="mu-slider-small-title" style="color:#FEFEFE"><?php echo $row['texto1'] ?></span>
+            <h2 class="mu-slider-title"><?php echo $row['texto2'] ?></h2>
+            <p><?php echo $row['texto3'] ?></p>           
             <a href="#mu-contact" class="mu-readmore-btn mu-reservation-btn">CONTACTANOS</a>
           </div>
-          <!-- / Top slider content -->
         </div>
-        <!-- / Top slider single slide -->    
-
-         <!-- Top slider single slide -->
-        <div class="mu-top-slider-single">
-          <img src="public/img/bar.png" alt="img">
-          <!-- Top slider content -->
-          <div class="mu-top-slider-content">
-            <span class="mu-slider-small-title" style="color:#FEFEFE">Candy Bar</span>
-            <h2 class="mu-slider-title">Con detalles de amor❤️</h2>
-            <p>Infaltable en tu día especial</p>           
-           <a href="#mu-contact" class="mu-readmore-btn mu-reservation-btn">CONTACTANOS</a>
-          </div>
-          <!-- / Top slider content -->
-        </div>
-        <!-- / Top slider single slide --> 
-
-        <!-- Top slider single slide -->
-        <div class="mu-top-slider-single">
-          <img src="public/img/LOVERONDAN.png" alt="img">
-          <!-- Top slider content -->
-          <div class="mu-top-slider-content">
-            <span class="mu-slider-small-title" style="color:#FEFEFE">Infaltable en tu día especial</span>
-            <h2 class="mu-slider-title">El mejor catering</h2>
-            <p>Esos pequeños detalles que enamoran</p>           
-            <a href="#mu-contact" class="mu-readmore-btn mu-reservation-btn">CONTACTANOS</a>
-          </div>
-          <!-- / Top slider content -->
-        </div>
-        <!-- / Top slider single slide -->   
-
+        <?php } ?>
       </div>
     </div>
   </section>

@@ -10,7 +10,7 @@
                             <div class="form-group">
                                 <label for="">Foto Portada</label>
                                 <div class="custom-file">
-                                    <input type="file" class="custom-file-input" id="customFile" name="foto_portada" required ="seleccione una imagen">
+                                    <input type="file" accept="image/x-png,image/jpg,image/jpeg" class="custom-file-input" id="customFile" name="foto_portada" required ="seleccione una imagen">
                                     <label class="custom-file-label" for="customFile">Choose file</label>
                                 </div>
                             </div>
@@ -70,6 +70,44 @@
     }
     ?>
 
+    <!-- -------------------------------------- -->
+    <?php
+    require_once('controllers/soporte.controllers.php');
+    $estado = new soporteControllers();
+    $data_ = NULL;
+    if(isset($_GET['bloquear'])){
+        $data_ = $estado -> portada_bloquear($_GET['bloquear']);
+    }
+    if(isset($_GET['desbloquear'])){
+        $data_ = $estado -> portada_desbloquear($_GET['desbloquear']);
+    }
+    if($data_['status'] == "error"){
+        ?>
+        <div class="col-lg-5 mx-auto pt-3 text-center">
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <strong><?php echo $data_['message']; ?></strong>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        </div>
+        <script>setTimeout(function(){ window.location.href = 'index.php?action=portada'; }, 2000);</script>
+        <?php
+    }else if($data_['status'] == "success"){
+        ?>
+        <div class="col-lg-5 mx-auto pt-3 text-center">
+            <div class="alert alert-primary alert-dismissible fade show" role="alert">
+                <strong><?php echo $data_['message']; ?></strong>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        </div>
+        <script>setTimeout(function(){ window.location.href = 'index.php?action=portada'; }, 2000);</script>
+        <?php
+    }
+    ?>
+
     <?php
     require_once('controllers/soporte.controllers.php');
     $listar = new soporteControllers();
@@ -77,7 +115,7 @@
     ?>
 
     <div class="col-lg-10 mx-auto pt-4">
-        <table class="table table-bordered">
+        <table class="table table-bordered bg-white">
             <thead>
                 <tr>
                     <th scope="col">Foto</th>
@@ -96,8 +134,28 @@
                     <td><?php echo $row['texto1']; ?></td>
                     <td><?php echo $row['texto2']; ?></td>
                     <td><?php echo $row['texto3']; ?></td>
-                    <td><span class="badge badge-primary">Activo</span></td>
-                    <td><a href=""><i class="fa fa-lock"></i></a></td>
+                    <?php
+                    if($row['estado'] == "1"){
+                        ?>
+                        <td><span class="badge badge-primary">Activo</span></td>
+                        <?php
+                    }else{
+                        ?>
+                        <td><span class="badge badge-danger">Inactivo</span></td>
+                        <?php
+                    }
+                    ?>
+                    <?php
+                    if($row['estado'] == "1"){
+                        ?>
+                        <td><a href="index.php?action=portada&bloquear=<?php echo $row['id_portada']?>"><i class="fa fa-unlock"></i></a></td>
+                        <?php
+                    }else{
+                        ?>
+                        <td><a href="index.php?action=portada&desbloquear=<?php echo $row['id_portada']?>"><i class="fa fa-lock"></i></a></td>
+                        <?php
+                    }
+                    ?>
                 </tr>
             <?php } ?>
             </tbody>
