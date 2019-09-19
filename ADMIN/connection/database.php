@@ -7,7 +7,6 @@ class database {
         $pass = "admin";
         try {
             $con = new mysqli($server, $user, $pass, $database);
-            echo 'Conectado';
             return $con;
         } catch (Exception $e) {
             echo 'Error en la conexion';
