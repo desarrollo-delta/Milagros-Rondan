@@ -11,7 +11,7 @@
                                 <label for="">Foto Portada</label>
                                 <div class="custom-file">
                                     <input type="file" accept="image/png,image/jpg,image/jpeg" class="custom-file-input" id="customFile" name="foto_portada" required>
-                                    <label class="custom-file-label" for="customFile">Choose file</label>
+                                    <label class="custom-file-label" for="customFile">Agregar Imagen</label>
                                 </div>
                             </div>
                         </div>
