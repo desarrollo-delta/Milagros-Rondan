@@ -8,8 +8,8 @@ class soporteControllers extends database{
             $titulo = $_POST['titulo'];
             $subtitulo = $_POST['subtitulo'];
             $comentario = $_POST['comentario'];
-            $width = getimagesize($_FILES['foto_portada']['tmp_name'][0]);
-            $height = getimagesize($_FILES['foto_portada']['tmp_name'][1]);
+            $width = getimagesize($_FILES['foto_portada']['tmp_name'])[0];
+            $height = getimagesize($_FILES['foto_portada']['tmp_name'])[1];
             if($width == "2200" && $height == "850"){
                 #Random
                 function aleatorio($length = 25) {

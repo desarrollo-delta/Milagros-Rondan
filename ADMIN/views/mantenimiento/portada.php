@@ -3,14 +3,14 @@
     <div class="col-lg-10 mx-auto">
         <div class="card">
             <div class="card-body">
-                <form method="post" enctype= multipart/form-data>
+                <form method="post" enctype="multipart/form-data">
                     <div class="row">
                     <input type="hidden" name="registrar_portada" value="registrar_portada">
                         <div class="col-lg-4">
                             <div class="form-group">
                                 <label for="">Foto Portada</label>
                                 <div class="custom-file">
-                                    <input type="file" accept="image/x-png,image/jpg,image/jpeg" class="custom-file-input" id="customFile" name="foto_portada" required ="seleccione una imagen">
+                                    <input type="file" accept="image/png,image/jpg,image/jpeg" class="custom-file-input" id="customFile" name="foto_portada" required>
                                     <label class="custom-file-label" for="customFile">Choose file</label>
                                 </div>
                             </div>

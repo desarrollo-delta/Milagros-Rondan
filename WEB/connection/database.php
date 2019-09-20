@@ -4,7 +4,7 @@ class database {
         $server = "localhost:3306";
         $database = "milagosrondan";
         $user = "root";
-        $pass = "admin";
+        $pass = "";
         try {
             $con = new mysqli($server, $user, $pass, $database);
             return $con;
