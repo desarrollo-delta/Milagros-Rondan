@@ -132,40 +132,113 @@ class soporteControllers extends database{
         if(isset($_POST['registrar_nosotros'])){
             $foto_nosotros = $_FILES['foto_nosotros'];
             $descripcion = $_POST['descripcion'];
-            $nombre_foto = $foto_nosotros['name'];
-            $split = explode('.',$nombre_foto);
-            $extension = $split[1];
-            if($extension == "png" || $extension == "jpg" || $extension == "jpeg"){
-                $nombre_imagen = aleatorio(25).".".$extension;
-                $ruta = "img/nosotros/".$nombre_imagen;
-                $archivo = $foto_nosotros['tmp_name'];
-                move_uploaded_file($archivo, $ruta);
-                #-----------------------------------------------------
-                $sql = "INSERT INTO milagosrondan.nosotros(foto, descripcion) VALUES ('$nombre_imagen', '$descripcion')";
-                $conexion = database::getConexion();
-                $query = mysqli_query($conexion, $sql);
-                if($query){
-                    $data = array(
-                        'status' => 'success',
-                        'message' => 'Registrada correctamente'
-                    );
-                    return $data;
+            $width = getimagesize($foto_nosotros['tmp_name'])[0];
+            $height = getimagesize($foto_nosotros['tmp_name'])[1];
+            if($width == "940" && $height == "788"){
+                $nombre_foto = $foto_nosotros['name'];
+                $split = explode('.',$nombre_foto);
+                $extension = $split[1];
+                if($extension == "png" || $extension == "jpg" || $extension == "jpeg"){
+                    $nombre_imagen = aleatorio(25).".".$extension;
+                    $ruta = "img/nosotros/".$nombre_imagen;
+                    $archivo = $foto_nosotros['tmp_name'];
+                    move_uploaded_file($archivo, $ruta);
+                    #-----------------------------------------------------
+                    $sql = "INSERT INTO milagosrondan.nosotros(foto, descripcion, estado) VALUES ('$nombre_imagen', '$descripcion','1')";
+                    $conexion = database::getConexion();
+                    $query = mysqli_query($conexion, $sql);
+                    if($query){
+                        $data = array(
+                            'status' => 'success',
+                            'message' => 'Registrada correctamente'
+                        );
+                        return $data;
+                    }else{
+                        $data = array(
+                            'status' => 'error',
+                            'message' => 'Error, no se pudo registrar'
+                        );
+                        return $data;
+                    }
                 }else{
-                    $data = array(
-                        'status' => 'error',
-                        'message' => 'Error, no se pudo registrar'
-                    );
-                    return $data;
+                    echo 'Por favor inserte una imagen';
                 }
             }else{
-                echo 'Por favor inserte una imagen';
+                $data = array(
+                    'status' => 'error',
+                    'message' => 'El tamaño de la imagen es incorrecto'
+                );
+                return $data;
             }
+
+
+            
         }
     }
 
-    public function nosotros_listar(){}
+    public function nosotros_listar(){
+        $sql = "SELECT id_nosotros, foto,descripcion, estado FROM milagosrondan.nosotros";
+        $conexion = database::getConexion();
+        $query = mysqli_query($conexion, $sql);
+        return $query;
+    }
 
-    public function nosotros_bloquear(){}
+    public function nosotros_bloquear($id_nosotros){
+        $sql = "UPDATE milagosrondan.nosotros SET estado = '0' WHERE id_nosotros = $id_nosotros";
+        $conexion = database::getConexion();
+        $query = mysqli_query($conexion, $sql);
+        if($query){
+            $data = array(
+                'status' => 'success',
+                'message' => 'Bloqueado'
+            );
+            return $data;
+        }else{
+            $data = array(
+                'status' => 'error',
+                'message' => 'Error, no se pudo bloquear'
+            );
+            return $data;
+        }
+    }
+
+    public function nosotros_desbloquear($id_nosotros){
+        $sql = "UPDATE milagosrondan.nosotros SET estado = '1' WHERE id_nosotros = $id_nosotros";
+        $conexion = database::getConexion();
+        $query = mysqli_query($conexion, $sql);
+        if($query){
+            $data = array(
+                'status' => 'success',
+                'message' => 'Desbloqueado'
+            );
+            return $data;
+        }else{
+            $data = array(
+                'status' => 'error',
+                'message' => 'Error, no se pudo desbloquear'
+            );
+            return $data;
+        }
+    }
+
+    public function nosotros_eliminar($id_nosotros){
+        $sql = "DELETE FROM milagosrondan.nosotros WHERE id_nosotros = $id_nosotros";
+        $conexion = database::getConexion();
+        $query = mysqli_query($conexion, $sql);
+        if($query){
+            $data = array(
+                'status' => 'success',
+                'message' => 'Eliminado correctamente'
+            );
+            return $data;
+        }else{
+            $data = array(
+                'status' => 'error',
+                'message' => 'Error, no se pudo eliminar'
+            );
+            return $data;
+        }
+    }
     
     public function evento_registrar(){
         #

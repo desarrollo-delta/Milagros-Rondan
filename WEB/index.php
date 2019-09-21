@@ -53,20 +53,20 @@
   </header>
   <?php
   require_once('connection/database.php');
-  $sql = "SELECT id_portada, foto1, texto1, texto2, texto3 FROM milagosrondan.portada WHERE estado = '1'";
-  $conexion = database::getConexion();
-  $query = mysqli_query($conexion, $sql);
+  $sql_portada = "SELECT id_portada, foto1, texto1, texto2, texto3 FROM milagosrondan.portada WHERE estado = '1'";
+  $conexion_portada = database::getConexion();
+  $query_portada = mysqli_query($conexion_portada, $sql_portada);
   ?>
   <section id="mu-slider">
     <div class="mu-slider-area"> 
       <div class="mu-top-slider">
-        <?php while ( $row = $query->fetch_assoc() ) { ?>
+        <?php while ( $row_portada = $query_portada->fetch_assoc() ) { ?>
         <div class="mu-top-slider-single">
-          <img src="../ADMIN/img/portada/<?php echo $row['foto1'] ?>" alt="img">
+          <img src="../ADMIN/img/portada/<?php echo $row_portada['foto1'] ?>" alt="img">
           <div class="mu-top-slider-content">
-            <span class="mu-slider-small-title" style="color:#FEFEFE"><?php echo $row['texto1'] ?></span>
-            <h2 class="mu-slider-title"><?php echo $row['texto2'] ?></h2>
-            <p><?php echo $row['texto3'] ?></p>           
+            <span class="mu-slider-small-title" style="color:#FEFEFE"><?php echo $row_portada['texto1'] ?></span>
+            <h2 class="mu-slider-title"><?php echo $row_portada['texto2'] ?></h2>
+            <p><?php echo $row_portada['texto3'] ?></p>           
             <a href="#mu-contact" class="mu-readmore-btn mu-reservation-btn">CONTACTANOS</a>
           </div>
         </div>
@@ -76,6 +76,13 @@
   </section>
   <!-- End slider  -->
   
+  <?php
+  $sql_nosotros = "SELECT id_nosotros, foto,descripcion FROM milagosrondan.nosotros WHERE estado = '1'";
+  $conexion_nosotros = database::getConexion();
+  $query_nosotros = mysqli_query($conexion_nosotros, $sql_nosotros);
+  $data_listar_nosotros = $query_nosotros;
+  ?>
+
   <!-- Start About us -->
   <section id="mu-about-us">
     <div class="container">
@@ -88,26 +95,21 @@
               <h2>SOBRE NOSOTROS</h2>
             </div>
 
+            <?php while ( $row_nosotros = $data_listar_nosotros->fetch_assoc() ) {  ?>
             <div class="row">
               <div class="col-md-6">
                <div class="mu-about-us-left">     
-                <img src="public/img/milagrosrondan.png" alt="img">           
+                <img src="../ADMIN/img/nosotros/<?php echo $row_nosotros['foto'] ?>" alt="img">           
                 </div>
               </div>
               <div class="col-md-6">
                  <div class="mu-about-us-right">
-                 <p>El Sol de Milagros Rondan en la ciudad de Lima es una organizadora de eventos, 
-                     el servicio ubicado en el distrito de Chorrillos presenta impecables prestaciones 
-                     para lograr una fiesta y recepción estupenda. Se otorga un servicio de alta calidad 
-                     basándose en todo tipo de tendencias y temáticas, los proyectos son totalmente 
-                     creativos haciendo que su día sea mágico e inolvidable, el cliente obtiene un evento 
-                     soñado. La empresa cuenta con más de 20 años en el rubro de Catering y Producción 
-                     general de Eventos" y por 5 años consecutivos han sido ganadores la premio POP y 
-                     también reconocidos en el palacio de GOBIERNO.</p>                              
+                 <p><?php echo $row_nosotros['descripcion'] ?></p>                              
                   
                 </div>
               </div>
             </div>
+            <?php } ?>
           </div>
         </div>
       </div>
