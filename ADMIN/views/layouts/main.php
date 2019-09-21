@@ -22,7 +22,7 @@
 
 </head>
 
-<body id="page-top">
+<body id="page-top" class="bg-white">
     <div id="wrapper">
 
     <?php include "views/partials/sidebar.php" ?>

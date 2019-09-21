@@ -1,21 +1,30 @@
 <div class="container-fluid">
 
     <div class="col-lg-7 mx-auto">
-        <form action="" method="post">
+        <form method="post" enctype="multipart/form-data">
+        <input type="hidden" name="registrar_nosotros" value="registrar">
             <div class="card card-body">
                 <div class="form-group">
                     <label for="">Imagen</label>
                     <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="customFile">
-                        <label class="custom-file-label" for="customFile">Choose file</label>
+                        <input type="file" class="custom-file-input" id="customFile" name="foto_nosotros" required>
+                        <label class="custom-file-label" for="customFile">Agregar Imagen</label>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="">Descripción</label>
-                    <textarea name="" cols="2" class="form-control"></textarea>
+                    <textarea name="descripcion" cols="2" class="form-control" required></textarea>
+                </div>
+                <div class="form-group text-right">
+                    <button type="submit" class="btn btn-primary ">Guardar</button>
                 </div>
             </div>
         </form>
+        <?php
+        require_once('controllers/soporte.controllers.php');
+        $registrar_nosotros = new soporteControllers();
+        $registrar_nosotros -> nosotros_registrar();
+        ?>
     </div>
 
     <div class="col-lg-11 mx-auto pt-4">
@@ -23,7 +32,7 @@
             <div class="container">
             <div class="row no-gutters">
                 <div class="col-md-4 align-self-center">
-                    <img src="http://localhost/PHP/Proyectos%20WEB/Milagros-Rondan/WEB/public/img/milagrosrondan.png" class="card-img">
+                    <img src="http://localhost/Milagros-Rondan/WEB/public/img/milagrosrondan.png" class="card-img">
                 </div>
                 <div class="col-md-8">
                     <div class="card-body">
@@ -33,10 +42,7 @@
             </div>
             <div class="card-footer bg-white">
                 <div class="row">
-                    <div class="col-lg-9 text-right">
-                        <a href="" class="btn btn-primary"><i class="fa fa-edit"></i></a>
-                    </div>
-                    <div class="col-lg-1 text-right">
+                    <div class="col-lg-10 text-right">
                         <a href="" class="btn btn-primary"><i class="fa fa-lock"></i></a>
                     </div>
                     <div class="col-lg-1">

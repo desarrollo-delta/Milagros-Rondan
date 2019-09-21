@@ -117,5 +117,65 @@ class soporteControllers extends database{
         }
     }
 
+    public function nosotros_registrar(){
+        #Random
+        function aleatorio($length = 25) {
+            $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            $charactersLength = strlen($characters);
+            $randomString = '';
+            for ($i = 0; $i < $length; $i++) {
+                $randomString .= $characters[rand(0, $charactersLength - 1)];
+            }
+            return $randomString;
+        }
+        #------------------------------------------------------------------
+        if(isset($_POST['registrar_nosotros'])){
+            $foto_nosotros = $_FILES['foto_nosotros'];
+            $descripcion = $_POST['descripcion'];
+            $nombre_foto = $foto_nosotros['name'];
+            $split = explode('.',$nombre_foto);
+            $extension = $split[1];
+            if($extension == "png" || $extension == "jpg" || $extension == "jpeg"){
+                $nombre_imagen = aleatorio(25).".".$extension;
+                $ruta = "img/nosotros/".$nombre_imagen;
+                $archivo = $foto_nosotros['tmp_name'];
+                move_uploaded_file($archivo, $ruta);
+                #-----------------------------------------------------
+                $sql = "INSERT INTO milagosrondan.nosotros(foto, descripcion) VALUES ('$nombre_imagen', '$descripcion')";
+                $conexion = database::getConexion();
+                $query = mysqli_query($conexion, $sql);
+                if($query){
+                    $data = array(
+                        'status' => 'success',
+                        'message' => 'Registrada correctamente'
+                    );
+                    return $data;
+                }else{
+                    $data = array(
+                        'status' => 'error',
+                        'message' => 'Error, no se pudo registrar'
+                    );
+                    return $data;
+                }
+            }else{
+                echo 'Por favor inserte una imagen';
+            }
+        }
+    }
+
+    public function nosotros_listar(){}
+
+    public function nosotros_bloquear(){}
+    
+    public function evento_registrar(){
+        #
+    }
+
+    public function evento_listar(){
+        #
+    }
+
+    public function detalle_evento(){}
+
 }
 ?>
