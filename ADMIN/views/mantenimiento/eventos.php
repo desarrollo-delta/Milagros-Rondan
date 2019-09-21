@@ -11,11 +11,13 @@
         </div>
     </div>
     <?php
-        if($_GET['value'] == "categoria"){
-            include_once('views/mantenimiento/evento_categoria.php');
-        }
-        if($_GET['value'] == "detalle"){
-            include_once('views/mantenimiento/evento_detalle.php');
+        if(isset($_GET['value'])){
+            if($_GET['value'] == "categoria"){
+                include_once('views/mantenimiento/evento_categoria.php');
+            }
+            if($_GET['value'] == "detalle"){
+                include_once('views/mantenimiento/evento_detalle.php');
+            }
         }
     ?>
 </div>
