@@ -25,6 +25,7 @@
                 <a class="collapse-item" href="index.php?action=portada">Portada</a>
                 <a class="collapse-item" href="index.php?action=nosotros">Nosotros</a>
                 <a class="collapse-item" href="index.php?action=eventos">Eventos</a>
+                <a class="collapse-item" href="index.php?action=galeria">Galeria</a>
             </div>
         </div>
     </li>

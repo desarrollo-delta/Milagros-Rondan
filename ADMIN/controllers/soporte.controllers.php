@@ -244,11 +244,126 @@ class soporteControllers extends database{
         #
     }
 
-    public function evento_listar(){
-        #
-    }
+    public function evento_listar(){}
 
     public function detalle_evento(){}
+    
+    public function galeria_registrar(){
 
+        function aleatorio($length = 25) {
+            $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            $charactersLength = strlen($characters);
+            $randomString = '';
+            for ($i = 0; $i < $length; $i++) {
+                $randomString .= $characters[rand(0, $charactersLength - 1)];
+            }
+            return $randomString;
+        }
+            #------------------------------------------------------------------
+            if(isset($_POST['registrar_galeria'])){
+                $foto_galeria = $_FILES['foto_galeria'];
+                $width = getimagesize($foto_galeria['tmp_name'])[0];
+                $height = getimagesize($foto_galeria['tmp_name'])[1];
+                if($width == "640" && $height == "480"){
+                    $nombre_foto = $foto_galeria['name'];
+                    $split = explode('.',$nombre_foto);
+                    $extension = $split[1];
+                    if($extension == "png" || $extension == "jpg" || $extension == "jpeg"){
+                        $nombre_imagen = aleatorio(25).".".$extension;
+                        $ruta = "img/galeria/".$nombre_imagen;
+                        $archivo = $foto_galeria['tmp_name'];
+                        move_uploaded_file($archivo, $ruta);
+                        #-----------------------------------------------------
+                        $sql = "INSERT INTO milagosrondan.galeria(foto,estado) VALUES ('$nombre_imagen','1')";
+                        $conexion = database::getConexion();
+                        $query = mysqli_query($conexion, $sql);
+                        if($query){
+                            $data = array(
+                                'status' => 'success',
+                                'message' => 'Registrada correctamente'
+                            );
+                            return $data;
+                        }else{
+                            $data = array(
+                                'status' => 'error',
+                                'message' => 'Error, no se pudo registrar'
+                            );
+                            return $data;
+                        }
+                    }else{
+                        echo 'Por favor inserte una imagen';
+                    }
+                }else{
+                    $data = array(
+                        'status' => 'error',
+                        'message' => 'El tamaño de la imagen es incorrecto'
+                    );
+                    return $data;
+                }
+    
+    
+                
+            }
+    }
+    public function galeria_listar(){
+        $sql = "SELECT id_galeria, foto, estado FROM milagosrondan.galeria";
+        $conexion = database::getConexion();
+        $query = mysqli_query($conexion, $sql);
+        return $query;
+    }
+    public function galeria_bloquear($id_galeria){
+        $sql = "UPDATE milagosrondan.galeria SET estado = '0' WHERE id_galeria = $id_galeria";
+        $conexion = database::getConexion();
+        $query = mysqli_query($conexion, $sql);
+        if($query){
+            $data = array(
+                'status' => 'success',
+                'message' => 'Bloqueado'
+            );
+            return $data;
+        }else{
+            $data = array(
+                'status' => 'error',
+                'message' => 'Error, no se pudo bloquear'
+            );
+            return $data;
+        }
+    }
+    public function galeria_desbloquear($id_galeria){
+        $sql = "UPDATE milagosrondan.galeria SET estado = '1' WHERE id_galeria = $id_galeria";
+        $conexion = database::getConexion();
+        $query = mysqli_query($conexion, $sql);
+        if($query){
+            $data = array(
+                'status' => 'success',
+                'message' => 'Desbloqueado'
+            );
+            return $data;
+        }else{
+            $data = array(
+                'status' => 'error',
+                'message' => 'Error, no se pudo desbloquear'
+            );
+            return $data;
+        }
+    }
+    public function galeria_eliminar($id_galeria){
+        $sql = "DELETE FROM milagosrondan.galeria WHERE id_galeria = $id_galeria";
+        $conexion = database::getConexion();
+        $query = mysqli_query($conexion, $sql);
+        if($query){
+            $data = array(
+                'status' => 'success',
+                'message' => 'Eliminado correctamente'
+            );
+            return $data;
+        }else{
+            $data = array(
+                'status' => 'error',
+                'message' => 'Error, no se pudo eliminar'
+            );
+            return $data;
+        }
+    }
 }
 ?>
