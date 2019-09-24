@@ -954,7 +954,9 @@
 
                             <!-- Start gallery image -->
                             <?php while ( $row_galeria = $data_listar_galeria->fetch_assoc() ) {  ?>
-                                  <div class="row"> 
+                            <div class="row"> 
+                              <table class="table table-bordered bg-white">
+                                
                                 <div class="mu-gallery-body">
                                     <!-- start single gallery image -->
                                   
@@ -976,9 +978,10 @@
                                   
                                     
                                     <!-- End single gallery image -->  
-                        </div>
-                        </div>
-                                  <?php } ?>
+                                </div>
+                            </table>
+                            </div>
+                            <?php } ?>
 
 
                     </div>
