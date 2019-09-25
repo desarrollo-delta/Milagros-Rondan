@@ -56,7 +56,7 @@
     </header>
     <?php
   require_once('connection/database.php');
-  $sql_portada = "SELECT id_portada, foto1, texto1, texto2, texto3 FROM milagosrondan.portada WHERE estado = '1'";
+  $sql_portada = "SELECT id_portada, foto1, texto1, texto2, texto3 FROM bydnc1dut5xcycds4qvn.portada WHERE estado = '1'";
   $conexion_portada = database::getConexion();
   $query_portada = mysqli_query($conexion_portada, $sql_portada);
   ?>
@@ -81,7 +81,7 @@
     <!-- End slider  -->
 
     <?php
-  $sql_nosotros = "SELECT id_nosotros, foto,descripcion FROM milagosrondan.nosotros WHERE estado = '1'";
+  $sql_nosotros = "SELECT id_nosotros, foto,descripcion FROM bydnc1dut5xcycds4qvn.nosotros WHERE estado = '1'";
   $conexion_nosotros = database::getConexion();
   $query_nosotros = mysqli_query($conexion_nosotros, $sql_nosotros);
   $data_listar_nosotros = $query_nosotros;
@@ -933,63 +933,51 @@
     </section>
     <!-- End Restaurant Menu -->
     <?php
-  $sql_galeria = "SELECT id_galeria, foto FROM milagosrondan.galeria WHERE estado = '1'";
+  $sql_galeria = "SELECT id_galeria, foto FROM bydnc1dut5xcycds4qvn.galeria WHERE estado = '1'";
   $conexion_galeria = database::getConexion();
   $query_galeria = mysqli_query($conexion_galeria, $sql_galeria);
   $data_listar_galeria = $query_galeria;
   ?>
     <!-- Start Gallery -->
-    <section id="mu-gallery">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="mu-gallery-area">
+    <!-- Start Gallery -->
+  <section id="mu-gallery">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="mu-gallery-area">
 
-                        <div class="mu-title">
-                            <span class="mu-subtitle">Descubre</span>
-                            <h2>Nuestra Galeria</h2>
-                        </div>
-                      
-                        <div class="mu-gallery-content">
+            <div class="mu-title">
+              <span class="mu-subtitle">Descubre</span>
+              <h2>Nuestra Galeria</h2>
+            </div>
 
-                            <!-- Start gallery image -->
-                            <?php while ( $row_galeria = $data_listar_galeria->fetch_assoc() ) {  ?>
-                            <div class="row"> 
-                              <table class="table table-bordered bg-white">
-                                
-                                <div class="mu-gallery-body">
-                                    <!-- start single gallery image -->
-                                  
-                                    <div class="mu-single-gallery col-md-4">
-                                        <div class="mu-single-gallery-item">
-                                            <figure class="mu-single-gallery-img">
-                                                <a class="mu-imglink"
-                                                    href="../ADMIN/img/galeria/<?php echo $row_galeria['foto'] ?>">
-                                                    <img alt="img"
-                                                        src="../ADMIN/img/galeria/<?php echo $row_galeria['foto'] ?>">
-                                                    <div class="mu-single-gallery-info">
-                                                        <img class="mu-view-btn" src="assets/img/plus.png"
-                                                            alt="plus icon img">
-                                                    </div>
-                                                </a>
-                                            </figure>
-                                        </div>
-                                    </div>
-                                  
-                                    
-                                    <!-- End single gallery image -->  
-                                </div>
-                            </table>
-                            </div>
-                            <?php } ?>
-
-
+            <div class="mu-gallery-content">
+            
+              <!-- Start gallery image -->
+              <div class="mu-gallery-body">
+              <?php while ( $row_galeria = $data_listar_galeria->fetch_assoc() ) {  ?>
+                <div class="mu-single-gallery col-md-4">
+                    <div class="mu-single-gallery-item">
+                      <figure class="mu-single-gallery-img">
+                        <a class="mu-imglink" href="../ADMIN/img/galeria/<?php echo $row_galeria['foto'] ?>">
+                          <img alt="img" src="../ADMIN/img/galeria/<?php echo $row_galeria['foto'] ?>">
+                           <div class="mu-single-gallery-info">
+                              <img class="mu-view-btn" src="assets/img/plus.png" alt="plus icon img">
+                          </div> 
+                        </a>
+                      </figure>            
                     </div>
                 </div>
+
+              <?php } ?>
+              </div>
             </div>
+          </div>
         </div>
-    </section>
-    <!-- End Gallery -->
+      </div>
+    </div>
+  </section>
+  <!-- End Gallery -->
 
     <!-- Start Client Testimonial section -->
     <section id="mu-client-testimonial">

@@ -35,7 +35,7 @@ class soporteControllers extends database{
                     $archivo = $_FILES['foto_portada']['tmp_name'];
                     move_uploaded_file($archivo, $ruta);
                     #Sentencia SQL
-                    $sql = "INSERT INTO milagosrondan.portada (foto1, texto1, texto2, texto3, estado) VALUES ('$nombre_imagen', '$titulo', '$subtitulo', '$comentario', '1')";
+                    $sql = "INSERT INTO bydnc1dut5xcycds4qvn.portada (foto1, texto1, texto2, texto3, estado) VALUES ('$nombre_imagen', '$titulo', '$subtitulo', '$comentario', '1')";
                     $conexion = database::getConexion();
                     $query = mysqli_query($conexion, $sql);
                     if($query){
@@ -69,7 +69,7 @@ class soporteControllers extends database{
     }
 
     public function portada_listar(){
-        $sql = "SELECT id_portada, foto1, texto1, texto2, texto3, estado FROM milagosrondan.portada";
+        $sql = "SELECT id_portada, foto1, texto1, texto2, texto3, estado FROM bydnc1dut5xcycds4qvn.portada";
         $conexion = database::getConexion();
         $query = mysqli_query($conexion, $sql);
         return $query;
@@ -77,7 +77,7 @@ class soporteControllers extends database{
 
     public function portada_bloquear($id_portada){
         if(isset($id_portada)){
-            $sql = "UPDATE milagosrondan.portada SET estado = '0' WHERE id_portada = $id_portada";
+            $sql = "UPDATE bydnc1dut5xcycds4qvn.portada SET estado = '0' WHERE id_portada = $id_portada";
             $conexion = database::getConexion();
             $query = mysqli_query($conexion, $sql);
             if($query){
@@ -98,7 +98,7 @@ class soporteControllers extends database{
 
     public function portada_desbloquear($id_portada){
         if(isset($id_portada)){
-            $sql = "UPDATE milagosrondan.portada SET estado = '1' WHERE id_portada = $id_portada";
+            $sql = "UPDATE bydnc1dut5xcycds4qvn.portada SET estado = '1' WHERE id_portada = $id_portada";
             $conexion = database::getConexion();
             $query = mysqli_query($conexion, $sql);
             if($query){
@@ -144,7 +144,7 @@ class soporteControllers extends database{
                     $archivo = $foto_nosotros['tmp_name'];
                     move_uploaded_file($archivo, $ruta);
                     #-----------------------------------------------------
-                    $sql = "INSERT INTO milagosrondan.nosotros(foto, descripcion, estado) VALUES ('$nombre_imagen', '$descripcion','1')";
+                    $sql = "INSERT INTO bydnc1dut5xcycds4qvn.nosotros(foto, descripcion, estado) VALUES ('$nombre_imagen', '$descripcion','1')";
                     $conexion = database::getConexion();
                     $query = mysqli_query($conexion, $sql);
                     if($query){
@@ -177,14 +177,14 @@ class soporteControllers extends database{
     }
 
     public function nosotros_listar(){
-        $sql = "SELECT id_nosotros, foto,descripcion, estado FROM milagosrondan.nosotros";
+        $sql = "SELECT id_nosotros, foto,descripcion, estado FROM bydnc1dut5xcycds4qvn.nosotros";
         $conexion = database::getConexion();
         $query = mysqli_query($conexion, $sql);
         return $query;
     }
 
     public function nosotros_bloquear($id_nosotros){
-        $sql = "UPDATE milagosrondan.nosotros SET estado = '0' WHERE id_nosotros = $id_nosotros";
+        $sql = "UPDATE bydnc1dut5xcycds4qvn.nosotros SET estado = '0' WHERE id_nosotros = $id_nosotros";
         $conexion = database::getConexion();
         $query = mysqli_query($conexion, $sql);
         if($query){
@@ -203,7 +203,7 @@ class soporteControllers extends database{
     }
 
     public function nosotros_desbloquear($id_nosotros){
-        $sql = "UPDATE milagosrondan.nosotros SET estado = '1' WHERE id_nosotros = $id_nosotros";
+        $sql = "UPDATE bydnc1dut5xcycds4qvn.nosotros SET estado = '1' WHERE id_nosotros = $id_nosotros";
         $conexion = database::getConexion();
         $query = mysqli_query($conexion, $sql);
         if($query){
@@ -222,7 +222,7 @@ class soporteControllers extends database{
     }
 
     public function nosotros_eliminar($id_nosotros){
-        $sql = "DELETE FROM milagosrondan.nosotros WHERE id_nosotros = $id_nosotros";
+        $sql = "DELETE FROM bydnc1dut5xcycds4qvn.nosotros WHERE id_nosotros = $id_nosotros";
         $conexion = database::getConexion();
         $query = mysqli_query($conexion, $sql);
         if($query){
@@ -274,7 +274,7 @@ class soporteControllers extends database{
                         $archivo = $foto_galeria['tmp_name'];
                         move_uploaded_file($archivo, $ruta);
                         #-----------------------------------------------------
-                        $sql = "INSERT INTO milagosrondan.galeria(foto,estado) VALUES ('$nombre_imagen','1')";
+                        $sql = "INSERT INTO bydnc1dut5xcycds4qvn.galeria(foto,estado) VALUES ('$nombre_imagen','1')";
                         $conexion = database::getConexion();
                         $query = mysqli_query($conexion, $sql);
                         if($query){
@@ -306,13 +306,13 @@ class soporteControllers extends database{
             }
     }
     public function galeria_listar(){
-        $sql = "SELECT id_galeria, foto, estado FROM milagosrondan.galeria";
+        $sql = "SELECT id_galeria, foto, estado FROM bydnc1dut5xcycds4qvn.galeria";
         $conexion = database::getConexion();
         $query = mysqli_query($conexion, $sql);
         return $query;
     }
     public function galeria_bloquear($id_galeria){
-        $sql = "UPDATE milagosrondan.galeria SET estado = '0' WHERE id_galeria = $id_galeria";
+        $sql = "UPDATE bydnc1dut5xcycds4qvn.galeria SET estado = '0' WHERE id_galeria = $id_galeria";
         $conexion = database::getConexion();
         $query = mysqli_query($conexion, $sql);
         if($query){
@@ -330,7 +330,7 @@ class soporteControllers extends database{
         }
     }
     public function galeria_desbloquear($id_galeria){
-        $sql = "UPDATE milagosrondan.galeria SET estado = '1' WHERE id_galeria = $id_galeria";
+        $sql = "UPDATE bydnc1dut5xcycds4qvn.galeria SET estado = '1' WHERE id_galeria = $id_galeria";
         $conexion = database::getConexion();
         $query = mysqli_query($conexion, $sql);
         if($query){
@@ -348,7 +348,7 @@ class soporteControllers extends database{
         }
     }
     public function galeria_eliminar($id_galeria){
-        $sql = "DELETE FROM milagosrondan.galeria WHERE id_galeria = $id_galeria";
+        $sql = "DELETE FROM bydnc1dut5xcycds4qvn.galeria WHERE id_galeria = $id_galeria";
         $conexion = database::getConexion();
         $query = mysqli_query($conexion, $sql);
         if($query){
