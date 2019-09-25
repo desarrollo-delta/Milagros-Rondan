@@ -168,11 +168,32 @@ class soporteControllers extends database{
     public function nosotros_bloquear(){}
     
     public function evento_registrar(){
-        #
+        if($_POST['nombre_evento']){
+            $nombre_evento = $_POST['nombre_evento'];
+            $sql = "INSERT INTO milagosrondan.eventos (nombre_evento, estado) VALUES ('$nombre_evento', '1');";
+            $conexion = database::getConexion();
+            $query = mysqli_query($conexion, $sql);
+            if($query){
+                $data = array(
+                    'status' => 'success',
+                    'message' => 'Evento registrado'
+                );
+                return $data;
+            }else{
+                    $data = array(
+                    'status' => 'error',
+                    'message' => 'Error, no se pudo registrar'
+                );
+                return $data;
+            }
+        }
     }
 
     public function evento_listar(){
-        #
+        $sql = "SELECT id_evento, nombre_evento, estado FROM milagosrondan.eventos";
+        $conexion = database::getConexion();
+        $query = mysqli_query($conexion, $sql);
+        return $query;
     }
 
     public function detalle_evento(){}
