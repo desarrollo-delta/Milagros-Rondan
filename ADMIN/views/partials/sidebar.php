@@ -26,6 +26,7 @@
                 <a class="collapse-item" href="index.php?action=nosotros">Nosotros</a>
                 <a class="collapse-item" href="index.php?action=eventos">Eventos</a>
                 <a class="collapse-item" href="index.php?action=galeria">Galeria</a>
+                <a class="collapse-item" href="index.php?action=trabajadores">Trabajadores</a>
             </div>
         </div>
     </li>

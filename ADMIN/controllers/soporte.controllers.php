@@ -241,7 +241,7 @@ class soporteControllers extends database{
     }
     
     public function evento_registrar(){
-        if($_POST['nombre_evento']){
+        if(isset($_POST['nombre_evento'])){
             $nombre_evento = $_POST['nombre_evento'];
             $sql = "INSERT INTO bydnc1dut5xcycds4qvn.eventos (nombre_evento, estado) VALUES ('$nombre_evento', '1');";
             $conexion = database::getConexion();
@@ -376,6 +376,132 @@ class soporteControllers extends database{
     
     public function galeria_eliminar($id_galeria){
         $sql = "DELETE FROM bydnc1dut5xcycds4qvn.galeria WHERE id_galeria = $id_galeria";
+        $conexion = database::getConexion();
+        $query = mysqli_query($conexion, $sql);
+        if($query){
+            $data = array(
+                'status' => 'success',
+                'message' => 'Eliminado correctamente'
+            );
+            return $data;
+        }else{
+            $data = array(
+                'status' => 'error',
+                'message' => 'Error, no se pudo eliminar'
+            );
+            return $data;
+        }
+    }
+
+    public function trabajadores_registrar(){
+
+        function aleatorio($length = 25) {
+            $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            $charactersLength = strlen($characters);
+            $randomString = '';
+            for ($i = 0; $i < $length; $i++) {
+                $randomString .= $characters[rand(0, $charactersLength - 1)];
+            }
+            return $randomString;
+        }
+            #------------------------------------------------------------------
+            if(isset($_POST['registrar_trabajadores'])){
+                $foto_trabajadores = $_FILES['foto_trabajadores'];
+                $nombre_trabajadores = $_POST['nombre'];
+                $cargo_trabajadores = $_POST['cargo'];
+                $facebook_trabajadores = $_POST['facebook'];
+                $width = getimagesize($foto_trabajadores['tmp_name'])[0];
+                $height = getimagesize($foto_trabajadores['tmp_name'])[1];
+                if($width == "265" && $height == "275"){
+                    $nombre_foto = $foto_trabajadores['name'];
+                    $split = explode('.',$nombre_foto);
+                    $extension = $split[1];
+                    if($extension == "png" || $extension == "jpg" || $extension == "jpeg"){
+                        $nombre_imagen = aleatorio(25).".".$extension;
+                        $ruta = "img/trabajadores/".$nombre_imagen;
+                        $archivo = $foto_trabajadores['tmp_name'];
+                        move_uploaded_file($archivo, $ruta);
+                        #-----------------------------------------------------
+                        $sql = "INSERT INTO bydnc1dut5xcycds4qvn.trabajadores(foto, nombre, cargo, facebook, estado) VALUES ('$nombre_imagen', '$nombre_trabajadores','$cargo_trabajadores', '$facebook_trabajadores', '1')";
+                        $conexion = database::getConexion();
+                        $query = mysqli_query($conexion, $sql);
+                        if($query){
+                            $data = array(
+                                'status' => 'success',
+                                'message' => 'Registrada correctamente'
+                            );
+                            return $data;
+                        }else{
+                            $data = array(
+                                'status' => 'error',
+                                'message' => 'Error, no se pudo registrar'
+                            );
+                            return $data;
+                        }
+                    }else{
+                        echo 'Por favor inserte una imagen';
+                    }
+                }else{
+                    $data = array(
+                        'status' => 'error',
+                        'message' => 'El tamaño de la imagen es incorrecto'
+                    );
+                    return $data;
+                }
+    
+    
+                
+            }
+    }
+    
+    public function trabajadores_listar(){
+        $sql = "SELECT id_trabajador, foto,nombre,cargo,facebook, estado FROM bydnc1dut5xcycds4qvn.trabajadores";
+        $conexion = database::getConexion();
+        $query = mysqli_query($conexion, $sql);
+        return $query;
+    }
+    
+    public function trabajadores_bloquear($id_trabajador){
+        $sql = "UPDATE bydnc1dut5xcycds4qvn.trabajadores SET estado = '0' WHERE id_trabajador = $id_trabajador";
+        $conexion = database::getConexion();
+        $query = mysqli_query($conexion, $sql);
+        if($query){
+            $data = array(
+                'status' => 'success',
+                'message' => 'Bloqueado'
+            );
+            return $data;
+        }else{
+            $data = array(
+                'status' => 'error',
+                'message' => 'Error, no se pudo bloquear'
+            );
+            return $data;
+        }
+    
+    }
+
+    public function trabajadores_desbloquear($id_trabajador){
+        $sql = "UPDATE bydnc1dut5xcycds4qvn.trabajadores SET estado = '1' WHERE id_trabajador = $id_trabajador";
+        $conexion = database::getConexion();
+        $query = mysqli_query($conexion, $sql);
+        if($query){
+            $data = array(
+                'status' => 'success',
+                'message' => 'Desbloqueado'
+            );
+            return $data;
+        }else{
+            $data = array(
+                'status' => 'error',
+                'message' => 'Error, no se pudo desbloquear'
+            );
+            return $data;
+        }
+    }
+
+    public function trabajadores_eliminar($id_trabajador){
+        $sql = "DELETE FROM bydnc1dut5xcycds4qvn.trabajadores WHERE id_trabajador = $id_trabajador";
         $conexion = database::getConexion();
         $query = mysqli_query($conexion, $sql);
         if($query){
