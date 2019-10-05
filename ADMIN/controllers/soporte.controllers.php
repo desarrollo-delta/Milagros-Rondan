@@ -170,9 +170,6 @@ class soporteControllers extends database{
                 );
                 return $data;
             }
-
-
-            
         }
     }
 
@@ -269,7 +266,67 @@ class soporteControllers extends database{
         return $query;
     }
 
-    public function detalle_evento(){}
+    public function detalle_evento(){
+        if(isset($_POST['detalle_evento'])){
+            $titulo_evento = $_POST['titulo_evento'];
+            $precio = $_POST['precio'];
+            $evento = $_POST['select_evento'];
+            #Random
+            function aleatorio($length = 25) {
+                $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+                $charactersLength = strlen($characters);
+                $randomString = '';
+                for ($i = 0; $i < $length; $i++) {
+                    $randomString .= $characters[rand(0, $charactersLength - 1)];
+                }
+                return $randomString;
+            }
+            #------------------------------------------------------------------
+            $foto_detalle_evento = $_FILES['foto_detalle_evento'];
+            $width = getimagesize($foto_detalle_evento['tmp_name'])[0];
+            $height = getimagesize($foto_detalle_evento['tmp_name'])[1];
+            if($width == "110" && $height == "110"){
+                $nombre_foto = $foto_detalle_evento['name'];
+                $split = explode('.',$nombre_foto);
+                $extension = $split[1];
+                if($extension == "png" || $extension == "jpg" || $extension == "jpeg"){
+                    $nombre_imagen = aleatorio(25).".".$extension;
+                    $ruta = "img/eventos/".$nombre_imagen;
+                    $archivo = $foto_detalle_evento['tmp_name'];
+                    move_uploaded_file($archivo, $ruta);
+                    #-----------------------------------------------------
+                    $sql = "INSERT INTO bydnc1dut5xcycds4qvn.detalle_evento(titulo, precio, descripcion,foto,id_evento,estado) VALUES ('$titulo_evento', $precio, '$descripcion','$nombre_imagen',$evento,'1')";
+                    $conexion = database::getConexion();
+                    $query = mysqli_query($conexion, $sql);
+                    if($query){
+                        $data = array(
+                            'status' => 'success',
+                            'message' => 'Registrada correctamente'
+                        );
+                        return $data;
+                    }else{
+                        $data = array(
+                            'status' => 'error',
+                            'message' => 'Error, no se pudo registrar'
+                        );
+                        return $data;
+                    }
+                }else{
+                    $data = array(
+                        'status' => 'error',
+                        'message' => 'La extensión no es correcta'
+                    );
+                    return $data;
+                }
+            }else{
+                $data = array(
+                    'status' => 'error',
+                    'message' => 'El tamaño de la imagen es incorrecto'
+                );
+                return $data;
+            }
+        }
+    }
     
     public function galeria_registrar(){
 
