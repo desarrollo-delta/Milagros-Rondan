@@ -978,64 +978,44 @@
     </div>
   </section>
   <!-- End Gallery -->
-
+  <?php
+  $sql_testimonios = "SELECT id_testimonios, titulo, comentario,nombre FROM bydnc1dut5xcycds4qvn.testimonios WHERE estado = '1'";
+  $conexion_testimonios = database::getConexion();
+  $query_testimonios = mysqli_query($conexion_testimonios, $sql_testimonios);
+  $data_listar_testimonios = $query_testimonios;
+  ?>
     <!-- Start Client Testimonial section -->
     <section id="mu-client-testimonial">
         <div class="mu-overlay">
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
+                    <?php while ( $row_testimonios = $data_listar_testimonios->fetch_assoc() ) {  ?>
                         <div class="mu-client-testimonial-area">
 
                             <div class="mu-title">
                                 <span class="mu-subtitle">Testimonios</span>
-                                <h2>Lo que dicen los Clientes</h2>
+                                <h2><?php echo $row_testimonios['titulo'] ?></h2>
                             </div>
 
                             <!-- testimonial content -->
                             <div class="mu-testimonial-content">
-                                <!-- testimonial slider -->
                                 <ul class="mu-testimonial-slider">
                                     <li>
                                         <div class="mu-testimonial-single">
                                             <div class="mu-testimonial-info">
-                                                <p>la familia Rondan un grupo de emprendedores rompiendo fronteras y
-                                                    derribando obstaculos</p>
+                                                <p><?php echo $row_testimonios['comentario'] ?></p>
                                             </div>
                                             <div class="mu-testimonial-bio">
-                                                <p>- Felix Garcia Rondan</p>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="mu-testimonial-single">
-                                            <div class="mu-testimonial-info">
-                                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate
-                                                    consequuntur ducimus cumque iure modi nesciunt recusandae eligendi
-                                                    vitae voluptatibus, voluptatum tempore, ipsum nisi perspiciatis.
-                                                    Rerum nesciunt fuga ab natus, dolorem?</p>
-                                            </div>
-                                            <div class="mu-testimonial-bio">
-                                                <p>- David Muller</p>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="mu-testimonial-single">
-                                            <div class="mu-testimonial-info">
-                                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate
-                                                    consequuntur ducimus cumque iure modi nesciunt recusandae eligendi
-                                                    vitae voluptatibus, voluptatum tempore, ipsum nisi perspiciatis.
-                                                    Rerum nesciunt fuga ab natus, dolorem?</p>
-                                            </div>
-                                            <div class="mu-testimonial-bio">
-                                                <p>- David Muller</p>
+                                                <p><?php echo $row_testimonios['nombre'] ?></p>
                                             </div>
                                         </div>
                                     </li>
                                 </ul>
+                              
                             </div>
                         </div>
+                        <?php } ?>  
                     </div>
                 </div>
             </div>

@@ -518,5 +518,94 @@ class soporteControllers extends database{
             return $data;
         }
     }
+
+    public function testimonios_registrar(){     
+            if(isset($_POST['registrar_testimonios'])){
+            $titulo = $_POST['titulo'];
+            $comentario = $_POST['comentario'];
+            $nombre = $_POST['nombre'];
+                $sql = "INSERT INTO bydnc1dut5xcycds4qvn.testimonios (titulo,comentario,nombre, estado) VALUES ('$titulo', '$comentario','$nombre', '1')";
+                        $conexion = database::getConexion();
+                        $query = mysqli_query($conexion, $sql);
+                        if($query){
+                            $data = array(
+                                'status' => 'success',
+                                'message' => 'Registrada correctamente'
+                            );
+                            return $data;
+                        }else{
+                            $data = array(
+                                'status' => 'error',
+                                'message' => 'Error, no se pudo registrar'
+                            );
+                            return $data;
+            }
+        }
+    }
+
+    public function testimonios_listar(){
+        $sql = "SELECT id_testimonios,titulo, comentario, nombre, estado FROM bydnc1dut5xcycds4qvn.testimonios";
+        $conexion = database::getConexion();
+        $query = mysqli_query($conexion, $sql);
+        return $query;
+    }
+
+    public function testimonios_bloquear($id_testimonios){
+        $sql = "UPDATE bydnc1dut5xcycds4qvn.testimonios SET estado = '0' WHERE id_testimonios = $id_testimonios";
+        $conexion = database::getConexion();
+        $query = mysqli_query($conexion, $sql);
+        if($query){
+            $data = array(
+                'status' => 'success',
+                'message' => 'Bloqueado'
+            );
+            return $data;
+        }else{
+            $data = array(
+                'status' => 'error',
+                'message' => 'Error, no se pudo bloquear'
+            );
+            return $data;
+        }
+    
+    }
+
+    public function testimonios_desbloquear($id_testimonios){
+        $sql = "UPDATE bydnc1dut5xcycds4qvn.testimonios SET estado = '1' WHERE id_testimonios = $id_testimonios";
+        $conexion = database::getConexion();
+        $query = mysqli_query($conexion, $sql);
+        if($query){
+            $data = array(
+                'status' => 'success',
+                'message' => 'Desbloqueado'
+            );
+            return $data;
+        }else{
+            $data = array(
+                'status' => 'error',
+                'message' => 'Error, no se pudo desbloquear'
+            );
+            return $data;
+        }
+    }
+
+    public function testimonios_eliminar($id_testimonios){
+        $sql = "DELETE FROM bydnc1dut5xcycds4qvn.testimonios WHERE id_testimonios = $id_testimonios";
+        $conexion = database::getConexion();
+        $query = mysqli_query($conexion, $sql);
+        if($query){
+            $data = array(
+                'status' => 'success',
+                'message' => 'Eliminado correctamente'
+            );
+            return $data;
+        }else{
+            $data = array(
+                'status' => 'error',
+                'message' => 'Error, no se pudo eliminar'
+            );
+            return $data;
+        }
+    }
 }
 ?>

@@ -20,8 +20,8 @@
                     </div>
                     <div class="form-group">
                         <select name="cargo" id="" class="form-control">
-                        <option value="Mesero">Mesero</option>
-                        <option value="Cocinera">Cocinera</option>
+                            <option value="Mesero">Mesero</option>
+                            <option value="Cocinera">Cocinera</option>
                         </select>
                     </div>
                 </div>
@@ -162,7 +162,7 @@
                     <?php
                     }
                     ?>
-                    
+
                     <?php
                     if($row['estado'] == "1"){
                         ?>
@@ -172,7 +172,7 @@
                     }else{
                         ?>
                     <td><a href="index.php?action=trabajadores&desbloquear=<?php echo $row['id_trabajador']?>"><i
-                            class="fa fa-lock"></i></a></td>
+                                class="fa fa-lock"></i></a></td>
                     <th scope="row"><a
                             href="index.php?action=trabajadores&eliminar=<?php echo $row['id_trabajador']; ?>"
                             class="btn btn-dark"><i class="fa fa-trash"></i></a></th>

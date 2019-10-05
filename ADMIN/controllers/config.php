@@ -7,7 +7,7 @@ class config {
     public function pages(){
         if(isset($_GET['action'])){
             $action = $_GET['action'];
-            if($action == 'portada' || $action == 'nosotros' || $action == 'eventos'|| $action == 'galeria' || $action == 'trabajadores'){
+            if($action == 'portada' || $action == 'nosotros' || $action == 'eventos'|| $action == 'galeria' || $action == 'trabajadores' || $action == 'testimonios'){
                 include 'views/mantenimiento/'.$action.'.php';
             }else if($action == 'logout'){
                 session_destroy();
