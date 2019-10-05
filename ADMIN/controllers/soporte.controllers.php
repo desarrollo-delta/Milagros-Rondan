@@ -238,7 +238,7 @@ class soporteControllers extends database{
     }
     
     public function evento_registrar(){
-        if($_POST['nombre_evento']){
+        if(isset($_POST['nombre_evento'])){
             $nombre_evento = $_POST['nombre_evento'];
             $sql = "INSERT INTO bydnc1dut5xcycds4qvn.eventos (nombre_evento, estado) VALUES ('$nombre_evento', '1');";
             $conexion = database::getConexion();
