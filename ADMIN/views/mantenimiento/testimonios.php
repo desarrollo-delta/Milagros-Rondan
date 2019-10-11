@@ -30,11 +30,11 @@
             </div>
         </div>
         <?php
-                    require_once('controllers/soporte.controllers.php');
-                    $registrar_testimonios = new soporteControllers();
-                    $data_registrar = $registrar_testimonios -> testimonios_registrar();
-                    if($data_registrar['status'] == "error"){
-                ?>
+            require_once('controllers/soporte.controllers.php');
+            $registrar_testimonios = new soporteControllers();
+            $data_registrar = $registrar_testimonios -> testimonios_registrar();
+            if($data_registrar['status'] == "error"){
+        ?>
         <div class="col-lg-8 mx-auto pt-3 text-center">
             <div class="alert alert-danger alert-dismissible fade show" role="alert">
                 <strong><?php echo $data_registrar['message']; ?></strong>

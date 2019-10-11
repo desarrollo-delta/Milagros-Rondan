@@ -123,7 +123,7 @@
     $data_listar = $listar -> portada_listar();
     ?>
 
-    <div class="col-lg-10 mx-auto pt-4">
+    <div class="table-responsive col-lg-10 mx-auto pt-4">
         <table class="table table-bordered bg-white">
             <thead>
                 <tr>

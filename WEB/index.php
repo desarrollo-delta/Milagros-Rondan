@@ -940,45 +940,48 @@
   ?>
     <!-- Start Gallery -->
     <!-- Start Gallery -->
-  <section id="mu-gallery">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12">
-          <div class="mu-gallery-area">
+    <section id="mu-gallery">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="mu-gallery-area">
 
-            <div class="mu-title">
-              <span class="mu-subtitle">Descubre</span>
-              <h2>Nuestra Galeria</h2>
-            </div>
+                        <div class="mu-title">
+                            <span class="mu-subtitle">Descubre</span>
+                            <h2>Nuestra Galeria</h2>
+                        </div>
 
-            <div class="mu-gallery-content">
-            
-              <!-- Start gallery image -->
-              <div class="mu-gallery-body">
-              <?php while ( $row_galeria = $data_listar_galeria->fetch_assoc() ) {  ?>
-                <div class="mu-single-gallery col-md-4">
-                    <div class="mu-single-gallery-item">
-                      <figure class="mu-single-gallery-img">
-                        <a class="mu-imglink" href="../ADMIN/img/galeria/<?php echo $row_galeria['foto'] ?>">
-                          <img alt="img" src="../ADMIN/img/galeria/<?php echo $row_galeria['foto'] ?>">
-                           <div class="mu-single-gallery-info">
-                              <img class="mu-view-btn" src="assets/img/plus.png" alt="plus icon img">
-                          </div> 
-                        </a>
-                      </figure>            
+                        <div class="mu-gallery-content">
+
+                            <!-- Start gallery image -->
+                            <div class="mu-gallery-body">
+                                <?php while ( $row_galeria = $data_listar_galeria->fetch_assoc() ) {  ?>
+                                <div class="mu-single-gallery col-md-4">
+                                    <div class="mu-single-gallery-item">
+                                        <figure class="mu-single-gallery-img">
+                                            <a class="mu-imglink"
+                                                href="../ADMIN/img/galeria/<?php echo $row_galeria['foto'] ?>">
+                                                <img alt="img"
+                                                    src="../ADMIN/img/galeria/<?php echo $row_galeria['foto'] ?>">
+                                                <div class="mu-single-gallery-info">
+                                                    <img class="mu-view-btn" src="assets/img/plus.png"
+                                                        alt="plus icon img">
+                                                </div>
+                                            </a>
+                                        </figure>
+                                    </div>
+                                </div>
+
+                                <?php } ?>
+                            </div>
+                        </div>
                     </div>
                 </div>
-
-              <?php } ?>
-              </div>
             </div>
-          </div>
         </div>
-      </div>
-    </div>
-  </section>
-  <!-- End Gallery -->
-  <?php
+    </section>
+    <!-- End Gallery -->
+    <?php
   $sql_testimonios = "SELECT id_testimonios, titulo, comentario,nombre FROM bydnc1dut5xcycds4qvn.testimonios WHERE estado = '1'";
   $conexion_testimonios = database::getConexion();
   $query_testimonios = mysqli_query($conexion_testimonios, $sql_testimonios);
@@ -990,17 +993,15 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
-                    <?php while ( $row_testimonios = $data_listar_testimonios->fetch_assoc() ) {  ?>
                         <div class="mu-client-testimonial-area">
-
-                            <div class="mu-title">
-                                <span class="mu-subtitle">Testimonios</span>
-                                <h2><?php echo $row_testimonios['titulo'] ?></h2>
+                            <div class="mu-title"><span class="mu-subtitle">Testimonials</span>
+                                <h2>Lo que los clientes piensan</h2>
                             </div>
-
-                            <!-- testimonial content -->
+                            
                             <div class="mu-testimonial-content">
+                            
                                 <ul class="mu-testimonial-slider">
+                                <?php while ( $row_testimonios = $data_listar_testimonios->fetch_assoc() ) {  ?>
                                     <li>
                                         <div class="mu-testimonial-single">
                                             <div class="mu-testimonial-info">
@@ -1010,12 +1011,13 @@
                                                 <p><?php echo $row_testimonios['nombre'] ?></p>
                                             </div>
                                         </div>
-                                    </li>
+                                    </li>  
+                                    <?php } ?>
                                 </ul>
-                              
+                                
                             </div>
+                            
                         </div>
-                        <?php } ?>  
                     </div>
                 </div>
             </div>
@@ -1039,35 +1041,37 @@
                             <span class="mu-subtitle">Nuestros Profesionales</span>
                             <h2>TRABAJADORES DEDICADOS</h2>
                         </div>
-                        
+
                         <div class="mu-chef-content">
-                        
+
 
                             <ul class="mu-chef-nav">
-                            <?php while ( $row_trabajadores = $data_listar_trabajadores->fetch_assoc() ) {  ?>
+                                <?php while ( $row_trabajadores = $data_listar_trabajadores->fetch_assoc() ) {  ?>
                                 <li>
-                                
+
                                     <div class="mu-single-chef">
                                         <figure class="mu-single-chef-img">
-                                            <img src="../ADMIN/img/trabajadores/<?php echo $row_trabajadores['foto'] ?>" alt="chef img">
+                                            <img src="../ADMIN/img/trabajadores/<?php echo $row_trabajadores['foto'] ?>"
+                                                alt="chef img">
                                         </figure>
                                         <div class="mu-single-chef-info">
                                             <h4><?php echo $row_trabajadores['nombre'] ?></h4>
                                             <span><?php echo $row_trabajadores['cargo'] ?></span>
                                         </div>
                                         <div class="mu-single-chef-social">
-                                            <a href="<?php echo $row_trabajadores['facebook'] ?> " target="_blank"><i class="fa fa-facebook"></i></a>
+                                            <a href="<?php echo $row_trabajadores['facebook'] ?> " target="_blank"><i
+                                                    class="fa fa-facebook"></i></a>
                                             <span class="mu-subtitle">facebook</span>
                                         </div>
                                     </div>
-                                
+
                                 </li>
-                            <?php } ?>
-                                
+                                <?php } ?>
+
                             </ul>
-                            
+
                         </div>
-                        
+
                     </div>
                 </div>
             </div>
