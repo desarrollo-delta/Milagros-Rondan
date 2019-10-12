@@ -5,25 +5,21 @@
                 <form method="post" enctype="multipart/form-data">
                     <div class="row">
                         <input type="hidden" name="registrar_testimonios" value="registrar_testimonios">
-                        <div class="col-lg-4">
-                            <div class="form-group">
-                                <label for="">Tìtulo</label>
-                                <input type="text" name="titulo" id="" class="form-control" required>
-                            </div>
-                        </div>
-                        <div class="col-lg-4">
+                        
+                        <div class="col-lg-6">
                             <div class="form-group">
                                 <label for="">Comentario</label>
                                 <input type="text" name="comentario" id="" class="form-control" required>
                             </div>
-                            <div class="form-group pt-2">
-                                <br>
-                                <button type="submit" class="btn btn-primary btn-block">Guardar</button>
-                            </div>
                         </div>
-                        <div class="col-lg-4">
+                        <div class="col-lg-6">
                             <label for="">Nombre</label>
                             <input type="text" name="nombre" id="" class="form-control" required>
+                        </div>
+                        <div class="col-lg-12">
+                        <div class="form-group pt-2 text-center">
+                                <button type="submit" class="btn btn-primary">Guardar</button>
+                        </div>
                         </div>
                     </div>
                 </form>
@@ -124,7 +120,6 @@
         <table class="table table-bordered bg-white">
             <thead>
                 <tr>
-                    <th scope="col">Titulo</th>
                     <th scope="col">Comentario</th>
                     <th scope="col">Nombre</th>
                     <th scope="col">Estado</th>
@@ -134,7 +129,6 @@
             <tbody>
                 <?php while ( $row = $data_listar->fetch_assoc() ) { ?>
                 <tr>
-                    <td><?php echo $row['titulo']; ?></td>
                     <td><?php echo $row['comentario']; ?></td>
                     <td><?php echo $row['nombre']; ?></td>
 
