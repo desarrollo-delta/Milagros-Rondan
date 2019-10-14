@@ -664,5 +664,37 @@ class soporteControllers extends database{
             return $data;
         }
     }
+
+    public function cliente_registrar(){     
+        if(isset($_POST['registrar_cliente'])){
+        $nombre = $_POST['nombre'];
+        $apellido = $_POST['apellido'];
+        $dni = $_POST['dni'];
+        $telefono = $_POST['telefono'];
+            $sql = "INSERT INTO bydnc1dut5xcycds4qvn.cliente (nombre,apellido,dni,telefono) VALUES ('$nombre','$apellido','$dni','$telefono')";
+                    $conexion = database::getConexion();
+                    $query = mysqli_query($conexion, $sql);
+                    if($query){
+                        $data = array(
+                            'status' => 'success',
+                            'message' => 'Registrada correctamente'
+                        );
+                        return $data;
+                    }else{
+                        $data = array(
+                            'status' => 'error',
+                            'message' => 'Error, no se pudo registrar'
+                        );
+                        return $data;
+        }
+     }
+    }
+
+    public function cliente_listar(){
+        $sql = "SELECT idcliente,nombre,apellido,dni,telefono FROM bydnc1dut5xcycds4qvn.cliente";
+        $conexion = database::getConexion();
+        $query = mysqli_query($conexion, $sql);
+        return $query;
+    }
 }
 ?>

@@ -5,7 +5,7 @@
                 <form method="post" enctype="multipart/form-data">
                     <div class="row">
                         <input type="hidden" name="registrar_testimonios" value="registrar_testimonios">
-                        
+
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <label for="">Comentario</label>
@@ -17,9 +17,9 @@
                             <input type="text" name="nombre" id="" class="form-control" required>
                         </div>
                         <div class="col-lg-12">
-                        <div class="form-group pt-2 text-center">
+                            <div class="form-group pt-2 text-center">
                                 <button type="submit" class="btn btn-primary">Guardar</button>
-                        </div>
+                            </div>
                         </div>
                     </div>
                 </form>
